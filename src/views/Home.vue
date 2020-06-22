@@ -8,11 +8,20 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import { defineComponent, onMounted, onActivated } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'Home',
   components: {
     HelloWorld
+  },
+  setup () {
+    onActivated(() => {
+      console.log('on-activated-h')
+    })
+    onMounted(() => {
+      console.log('onMounted-h')
+    })
   }
-}
+})
 </script>

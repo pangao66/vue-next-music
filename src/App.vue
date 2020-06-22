@@ -1,19 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <m-header></m-header>
+    <tab></tab>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
+<script lang="ts">
+import { defineComponent, reactive } from 'vue'
+import MHeader from '@/components/m-header/m-header.vue'
+import Tab from '@/components/tab/tab.vue'
 
+const tabList = reactive([
+  { name: '推荐', to: '/recommend' },
+  { name: '歌手', to: '/singer' },
+  { name: '排行', to: '/rank' },
+  { name: '搜索', to: '/search' }
+])
+export default defineComponent({
+  components: { MHeader, Tab },
+  setup () {
+    return {
+      tabList
+    }
+  }
+})
+</script>
 <style lang="stylus">
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
 </style>
